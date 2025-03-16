@@ -26,7 +26,7 @@ def delete_student(request,student_id):
    student=Student.objects.get(id=student_id)
    if student:
       student.delete()
-      messages.add_message(request,messages.WARNING,'Record Deleted')
+      messages.add_message(request,messages.INFO,'Record Deleted')
       return redirect('studentlist')
    
 
@@ -36,7 +36,7 @@ def update_student(request,student_id):
       form = StudentForm(request.POST,instance=specific_student)
       if form.is_valid():
          form.save()
-         messages.add_message(request,messages.WARNING,'Record Deleted')
+         messages.add_message(request,messages.WARNING,'Record Updated')
          return redirect('studentlist')
     else:
         form = StudentForm(instance=specific_student)

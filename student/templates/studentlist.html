@@ -5,18 +5,20 @@
 {% block content %}
 
     <h1 class="text-center mb-4">Student List</h1>
-    <div class="w-60vw">
+    
         {% if messages %}
             {% for message in messages %}
+            <div class="p-1 mb-1 w-100 bg-{{message.tags}} text-white">
                 {{message}}
+            </div>
             {% endfor %}
         {% endif %}
-    </div>
+    
 
     <table class="table">
         <thead>
           <tr>
-            <th scope="col">#</th>
+            <th scope="col">Student ID</th>
             <th scope="col">Name Of Student</th>
             <th scope="col">Email Address</th>
             <th scope="col">Mobile Number</th>
@@ -28,7 +30,7 @@
         <tbody>
             {% for student in students %}  
                 <tr>
-                    <th scope="row">1</th>
+                    <th scope="row">{{student.id}}</th>
                     <td>{{ student.name }}</td>
                     <td>{{ student.email }}</td>
                     <td>{{ student.phonenumber|truncatechars:100 }}</td>
