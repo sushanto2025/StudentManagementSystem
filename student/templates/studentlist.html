@@ -1,0 +1,44 @@
+{% extends "base.html" %}
+
+{% block title %}Student List{% endblock %}
+
+{% block content %}
+
+    <h1 class="text-center mb-4">Student List</h1>
+    <div class="w-60vw">
+        {% if messages %}
+            {% for message in messages %}
+                {{message}}
+            {% endfor %}
+        {% endif %}
+    </div>
+
+    <table class="table">
+        <thead>
+          <tr>
+            <th scope="col">#</th>
+            <th scope="col">Name Of Student</th>
+            <th scope="col">Email Address</th>
+            <th scope="col">Mobile Number</th>
+            <th scope="col">Course Name</th>
+            <th scope="col">Take Action</th>
+
+          </tr>
+        </thead>
+        <tbody>
+            {% for student in students %}  
+                <tr>
+                    <th scope="row">1</th>
+                    <td>{{ student.name }}</td>
+                    <td>{{ student.email }}</td>
+                    <td>{{ student.phonenumber|truncatechars:100 }}</td>
+                    <td>{{ student.course }}</td>
+                    <td><a href="{% url 'update_student' student.id %}" class="btn btn-success btn-sm">Update</a>
+                        <a href="{% url 'delete_student' student.id %}" class="btn btn-danger btn-sm">Delete</a></td>
+                </tr>
+            {% empty %}
+                <p class="text-center">No Students available.</p>
+            {% endfor %}
+        </tbody>
+    </table>
+{% endblock %}
