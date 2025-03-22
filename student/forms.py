@@ -5,12 +5,17 @@ class StudentForm(forms.ModelForm):
     class Meta:
         model = Student
         fields = ['name','email','phonenumber','course']
-        widget = {
-            'name' : forms.TextInput(),
+        widgets = {
+            'name' : forms.TextInput(attrs={
+                'class':'form-control'
+            }),
             'email': forms.EmailInput(attrs={
-                'type':'email'
+                'class':'form-control'
             }),
             'phonenumber' : forms.NumberInput(attrs={
-                'type':'number'
-            })
+                'class':'form-control'
+            }),
+            'course' : forms.TextInput(attrs={
+                'class':'form-control'
+            }),
         }
